@@ -24,22 +24,23 @@ class Group:
         self.x,self.y=pos
         self.num=num
         for i in range(self.num):
-            self.button=tk.Button(root,text=random.randint(1,10),bg='white',fg=random.choice(colors),font=("宋体",20),command=self.click)
+            randtext=random.randint(1,10)
+            self.button=tk.Button(root,text=randtext,bg='white',fg=random.choice(colors),font=("宋体",20),command=self.click)
             self.button.place(x=self.x,y=self.y,width=50,height=50)
-            self.group.append(self.button)
+            self.group.append((self.button,randtext))
             self.y+=25
             self.x=self.x+random.randint(2,15)-random.randint(2,15)
 
         for j in range(len(self.group)-1):
-            self.group[j].config(state="disabled")
+            self.group[j][0].config(state="disabled")
     
     def click(self):
         global blankpos_global,blank_list
         same_cards=0
 
-        self.group[self.num-1].place(x=blankpos_global,y=550)
-        self.group[self.num-1].config(state="disabled")
-        self.group[self.num-2].config(state="normal")
+        self.group[self.num-1][0].place(x=blankpos_global,y=550)
+        self.group[self.num-1][0].config(state="disabled")
+        self.group[self.num-2][0].config(state="normal")
 
         blank_list.append(self.group[self.num-1])
     
@@ -49,10 +50,16 @@ class Group:
         #delete cards in the blank
         for card0 in range(len(blank_list)):
             for card1 in range(card0,len(blank_list)):
-                if(blank_list[card0]==blank_list[card1]):
+                if(blank_list[card0][1]==blank_list[card1][1]):
                     same_cards+=1
-                if(same_cards==3):
-                    same_cards=0
+                    if(same_cards==3):
+                        blank_list[card0][0].destroy()
+                        blank_list[card1][0].destroy()
+                        #blank_list.pop(card0)
+                        #blank_list.pop(card1)
+                        blankpos_global-=50
+                        same_cards=0
+                
         #exit
         if blankpos_global==500:
             ans=messagebox.askokcancel('信息','槽位已满,将退出')
