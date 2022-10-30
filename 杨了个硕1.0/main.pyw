@@ -28,20 +28,31 @@ class Group:
             self.button.place(x=self.x,y=self.y,width=50,height=50)
             self.group.append(self.button)
             self.y+=25
+            self.x=self.x+random.randint(2,15)-random.randint(2,15)
+
         for j in range(len(self.group)-1):
             self.group[j].config(state="disabled")
     
     def click(self):
         global blankpos_global,blank_list
+        same_cards=0
 
         self.group[self.num-1].place(x=blankpos_global,y=550)
         self.group[self.num-1].config(state="disabled")
         self.group[self.num-2].config(state="normal")
 
         blank_list.append(self.group[self.num-1])
+    
         blankpos_global+=50
         self.num-=1
 
+        #delete cards in the blank
+        for card0 in range(len(blank_list)):
+            for card1 in range(card0,len(blank_list)):
+                if(blank_list[card0]==blank_list[card1]):
+                    same_cards+=1
+                if(same_cards==3):
+                    same_cards=0
         #exit
         if blankpos_global==500:
             ans=messagebox.askokcancel('信息','槽位已满,将退出')
