@@ -11,6 +11,22 @@ root.geometry(f"{width}x{height}")  #设置大小
 root.resizable(False,False)    #禁止缩放窗口
 root.config(bg="green")     #设置背景色
 root.title("杨了个硕")
+#global blank
+blank=[0,0,0,0,0,0,0,0,]
+blank_pos=0
+blank_num=0
+##class Card##
+class Card:
+    def __init__(self,pos):
+        self.x,self.y=pos
+
+        self.body=tk.Button(root=frame1,bg="white",fg="green",font=("宋体",25),activebackground="white",activeforeground="green",relief="flat")
+        self.body.place(x=self.x,y=self.y,width=50,height=50)
+
+    def move(self):
+        global blank,blank_pos,blank_num
+        blank_pos+=50
+        blank_num+=1
 
 
 ##start##
@@ -29,7 +45,6 @@ bg_cv.create_image(0,0,image=bg_img,anchor="nw")
 root.update()
 time.sleep(2)
 
-
 ##main GUI##
 root.update()
 
@@ -46,6 +61,11 @@ def show_about_window():
     text.window_create("1.0")
 
     text.config(state="disabled")
+
+def start_main_game():
+    frame0.forget()
+    frame1.place(x=0,y=0)
+
 
 #about
 button_about=tk.Button(bg_cv,font=("楷书",30),text="关于我们",relief="flat",cursor="hand2",
