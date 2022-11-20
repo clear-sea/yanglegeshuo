@@ -98,8 +98,8 @@ button_about=tk.Button(bg_cv,font=("楷书",30),text="关于我们",relief="flat
                         command=show_about_window)
 button_about.place(x=150,y=200,width=200,height=70)
 
-button_about=tk.Button(bg_cv,font=("楷书",30),text="开始",relief="flat",cursor="hand2",
+button_about=tk.Button(bg_cv,font=("楷书",30),text="开始",relief="flat",cursor="hand2",)
                         command=start_main_game)
 button_about.place(x=150,y=300,width=200,height=70)
-
+##mainloop
 root.mainloop()
