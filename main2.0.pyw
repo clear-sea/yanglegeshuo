@@ -41,10 +41,20 @@ class Card:
             blank_num+=1
 
             cnt=0
+            delete_cards_list=[0,0,0]
+            a=0
             for card in blank:
-                if type(card) and card.data==self.data:
+                if (not isinstance(card,int)) and card.data==self.data:
                     cnt+=1
-                    print(cnt)
+                    delete_cards_list[a]=card
+                    a+=1
+                    if cnt==3:
+                        cnt=0
+                        a=0
+                        
+                        delete_cards_list[0].delete()
+                        delete_cards_list[1].delete()
+                        delete_cards_list[2].delete()
 
 
     def delete(self):
@@ -57,7 +67,7 @@ class Card:
         all_cards_list[self.id]=0
  
 ##start##
-bg_img=Image.open("logo.png")#open the background image
+bg_img=Image.open("images/logo.png")#open the background image
 bg_img=ImageTk.PhotoImage(bg_img)#cast to TK image
 #frames
 frame0=tk.Frame(root,width=width,height=height,relief="flat",bg="white")
