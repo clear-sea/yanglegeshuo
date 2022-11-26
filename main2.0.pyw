@@ -20,10 +20,10 @@ blank_num=0
 id=0
 ##class Card##
 class Card:
-    def __init__(self,pos,id):
+    def __init__(self,pos,id,data):
         self.x,self.y=pos
         self.id=id
-        self.data=random.randint(1,10)
+        self.data=data
         self.body=tk.Button(frame1,text=self.data,bg="white",fg="green",font=("宋体",25),activebackground="white",activeforeground="green",command=self.move)
         self.body.place(x=self.x,y=self.y,width=50,height=50)
 
@@ -119,9 +119,10 @@ def start_main_game():
     exit_btn.place(x=0,y=0,width=50,height=50)
 
     for i in range(random.randint(7,9)):
+        card_data=random.randint(1,10)
         for j in range(3):
             all_cards_num+=1
-            card=Card((random.randint(0,450),random.randint(50,500)),id)
+            card=Card((random.randint(0,450),random.randint(50,500)),id,card_data)
             id+=1
             all_cards_list.append(card)
 
