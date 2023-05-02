@@ -1,7 +1,7 @@
 # 杨了个硕
 使用Python语言
 想实践一下得话，请去Python官网：www.python.org
-下载Python3和源代码，安装第三方库然后运行；或者下载releases中的可执行文件
+下载Python3、源代码以及资源（图像文件），安装第三方库然后运行；或者下载releases中的可执行文件和资源在Windows中运行
 
 ![image](https://user-images.githubusercontent.com/111341725/198824698-97f553b0-d689-45a0-aabe-2e5a4fdc0c94.png)
 
